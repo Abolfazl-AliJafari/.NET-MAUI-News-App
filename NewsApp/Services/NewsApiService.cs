@@ -9,7 +9,7 @@ namespace NewsApp.Services
         private readonly string baseUrl = "https://gnews.io/api/v4";
         private HttpClient httpClient;
         #endregion
-        public async Task<NewsModel> GetNewsAsync(string topic)
+        public async Task<NewsModel> GetNewsAsync(string topic,string search = "")
         {
             var networkConnection = Connectivity.NetworkAccess;
             if(networkConnection == NetworkAccess.Internet)
@@ -18,7 +18,7 @@ namespace NewsApp.Services
 
                 try
                 {
-                    string query = $"{baseUrl}/top-headlines?token=YOURAPIKEY&lang=en&topic={topic}";
+                    string query = $"{baseUrl}/top-headlines?token=387eb6bc1bcf25e27e17fac26da35aca&lang=en&topic={topic}&q={search}";
 
                     var response = await httpClient.GetAsync(query);
                     if (response.IsSuccessStatusCode)

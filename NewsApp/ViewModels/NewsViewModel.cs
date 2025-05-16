@@ -19,6 +19,9 @@ namespace NewsApp.ViewModels
         [ObservableProperty]
         ObservableCollection<Category> secondCategories;
 
+        [ObservableProperty] 
+         string searchText;
+
         public ObservableCollection<Article> SavedArticles { get; set; } = new();
 
         public ObservableCollection<Article> Articles { get; private set; } = new();
@@ -109,6 +112,23 @@ namespace NewsApp.ViewModels
         }
 
         [RelayCommand]
+        async Task Search()
+        {
+            IsBusy = true;
+            var _news = await _newsApiService.GetNewsAsync(ActiveCategory, SearchText);
+            if (_news != null)
+            {
+                Articles.Clear();
+                foreach (var article in _news.Articles)
+                {
+                    Articles.Add(article);
+                }
+            }
+
+            IsBusy = false;
+        }
+        
+        [RelayCommand]
         async Task GoToDetailsPage(Article article)
         {
             if (article is null)
@@ -121,7 +141,7 @@ namespace NewsApp.ViewModels
         }
 
         [RelayCommand]
-        async Task GetArticlesFromDb()
+        public async Task GetArticlesFromDb()
         {
             var dbArticles = await App.NewsRepository.GetAllArticles();
             if(dbArticles is not null)
@@ -133,5 +153,6 @@ namespace NewsApp.ViewModels
                 }
             }
         }
+        
     }
 }

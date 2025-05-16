@@ -9,6 +9,8 @@ namespace NewsApp.ViewModels
         [ObservableProperty]
         Article article;
 
+        [ObservableProperty]
+        private bool isBookMarked;
         public NewsDetailsViewModel()
         {
 

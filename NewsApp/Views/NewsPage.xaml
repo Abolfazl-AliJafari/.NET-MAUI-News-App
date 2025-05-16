@@ -18,6 +18,9 @@
             <SearchBar Placeholder="Search"
                        BackgroundColor="#1D2229"
                        PlaceholderColor="#DADBDC" 
+                       TextColor="#DADBDC"
+                       Text="{Binding SearchText}"
+                       SearchCommand="{Binding SearchCommand}"
                        Margin="10"/>
 
             <Label Text="&#xf0b0;"
@@ -248,7 +251,8 @@
                                    FontFamily="RobotoBold"
                                    FontAttributes="Bold"
                                    x:Name="savedNewsTabItem"
-                                   TextColor="#686B70">
+                                   TextColor="#686B70"
+                                   >
                     <RefreshView RefreshColor="Green"
                                  Margin="10,10,10,0"
                                  IsRefreshing="{Binding IsBusy,Mode=TwoWay}"

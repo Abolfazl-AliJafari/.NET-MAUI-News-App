@@ -5,6 +5,7 @@ using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 #endif
 
 
+using NewsApp.Resources;
 using NewsApp.Services;
 
 namespace NewsApp;
@@ -16,11 +17,17 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
-
         NewsRepository = newsRepository;
-    }
 
+        MainPage = new SplashScreen();
+        LoadMainPageAsync();
+    }
+    private async void LoadMainPageAsync()
+    {
+        await Task.Delay(1500); 
+
+        MainPage = new AppShell();
+    }
 #if __IOS__
 
 

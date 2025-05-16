@@ -22,6 +22,8 @@ public partial class NewsPage : ContentPage
 		{
             suggestedNewsTabItem.TextColor = Color.FromArgb("#686B70");
             savedNewsTabItem.TextColor = Color.FromArgb("#FFFFFF");
+            (BindingContext as NewsViewModel)?.GetArticlesFromDb();
         }
+		
 	}
 }

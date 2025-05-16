@@ -4,6 +4,6 @@ namespace NewsApp.Services
 {
     public interface INewsApiService
     {
-        Task<NewsModel> GetNewsAsync(string topic);
+        Task<NewsModel> GetNewsAsync(string topic, string search = "");
     }
 }
